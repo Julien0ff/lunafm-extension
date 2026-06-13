@@ -42,9 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   volSlider.addEventListener('input', (e) => {
-    currentVolume = e.target.value;
+    currentVolume = parseFloat(e.target.value);
     audio.volume = currentVolume;
-    if (isMuted && currentVolume > 0) {
+    
+    if (currentVolume === 0) {
+      if (!isMuted) {
+        isMuted = true;
+        audio.muted = true;
+        updateMuteState();
+      }
+    } else if (isMuted && currentVolume > 0) {
       isMuted = false;
       audio.muted = false;
       updateMuteState();
