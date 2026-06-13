@@ -91,9 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
         coverArt.src = song.art;
         coverArt.style.display = 'block';
         noArt.style.display = 'none';
+        const bgCover = document.getElementById('bgCover');
+        if (bgCover) bgCover.style.backgroundImage = `url(${song.art})`;
       } else {
         coverArt.style.display = 'none';
         noArt.style.display = 'flex';
+        const bgCover = document.getElementById('bgCover');
+        if (bgCover) bgCover.style.backgroundImage = 'none';
       }
 
       statusText.textContent = data.live.is_live ? 'En direct' : 'La radio de l\'univers';
